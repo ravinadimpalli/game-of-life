@@ -1,0 +1,13 @@
+node {
+    stage("scm"){
+        git "https://github.com/ravinadimpalli/game-of-life.git"
+    }
+    
+    stage("build"){
+        sh "mvn package"
+    }
+    
+    stage("postBuild"){
+        archiveArtifacts "gameoflife-web/target/*.war"
+    }
+}
